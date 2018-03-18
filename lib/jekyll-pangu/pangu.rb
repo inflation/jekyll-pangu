@@ -1,5 +1,5 @@
 =begin
-The module Pangu is copied from the repo: https://github.com/dlackty/pangu.rb under MIT License. Then modified to use unicode '\u2006', i.e., "SIX-PER-EM SPACE" for better looking, as well as ignoring backquote '`' since it will be handled by <code> tags.
+The module Pangu is copied from the repo: https://github.com/dlackty/pangu.rb under MIT License. Then modified to use unicode '\u2005', i.e., "FOUR-PER-EM SPACE" for better looking, as well as ignoring backquote '`' since it will be handled by <code> tags.
 =end
 
 module JekyllPangu
@@ -21,26 +21,26 @@ module JekyllPangu
   def self.spacing(text)
     text = text.dup
 
-    text.gsub!(CJK_QUOTE_L_RE, "\\1\u2006\\2")
-    text.gsub!(CJK_QUOTE_R_RE, "\\1\u2006\\2")
+    text.gsub!(CJK_QUOTE_L_RE, "\\1\u2005\\2")
+    text.gsub!(CJK_QUOTE_R_RE, "\\1\u2005\\2")
     text.gsub!(CJK_QUOTE_FIX_RE, "\\1\\3\\5")
 
     old_text = text
-    new_text = old_text.gsub(CJK_BRACKET_RE, "\\1\u2006\\2\u2006\\4")
+    new_text = old_text.gsub(CJK_BRACKET_RE, "\\1\u2005\\2\u2005\\4")
     text = new_text
 
     if old_text == new_text
-      text.gsub!(CJK_BRACKET_L_RE, "\\1\u2006\\2")
-      text.gsub!(CJK_BRACKET_R_RE, "\\1\u2006\\2")
+      text.gsub!(CJK_BRACKET_L_RE, "\\1\u2005\\2")
+      text.gsub!(CJK_BRACKET_R_RE, "\\1\u2005\\2")
     end
 
     text.gsub!(CJK_BRACKETFIX_RE, "\\1\\3\\5")
 
-    text.gsub!(CJK_HASH_L_RE, "\\1\u2006\\2")
-    text.gsub!(CJK_HASH_R_RE, "\\1\u2006\\3")
+    text.gsub!(CJK_HASH_L_RE, "\\1\u2005\\2")
+    text.gsub!(CJK_HASH_R_RE, "\\1\u2005\\3")
 
-    text.gsub!(CJK_L_RE, "\\1\u2006\\2")
-    text.gsub!(CJK_R_RE, "\\1\u2006\\2")
+    text.gsub!(CJK_L_RE, "\\1\u2005\\2")
+    text.gsub!(CJK_R_RE, "\\1\u2005\\2")
 
     text
   end
